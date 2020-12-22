@@ -1066,7 +1066,7 @@ server_recv_cb(EV_P_ ev_io *w, int revents)
         } else {
             query_t *query = (query_t *)ss_malloc(sizeof(query_t));
             query->server = server;
-            snprintf(query->hostname, 256, "%s", host);
+            snprintf(query->hostname, sizeof(query->hostname), "%s", host);
 
             server->stage = STAGE_RESOLVE;
             server->query = resolv_query(host, server_resolve_cb,
